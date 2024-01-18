@@ -2,50 +2,70 @@
 // 1 Bitcoin	11949.16 lv.
 // 1 g of gold	67.51 lv.
 
-function bitcoinMining(input) {
-    let totalMoney = 0;
+function bitcoinMining(shift) {
+    let totalBitcoin = 0;
     let totalGold = 0;
     let dayCounter = 0;
-    let firstCoinDay = 0;
+    let totalMoney = 0;
+    // let firstCoinDay = 0;
     let bitcoinPrice = 11949.16;
     let goldPrice = 67.51;
     let oneBitcoin = Math.floor(totalMoney / bitcoinPrice);
-    let totalBitcoin = 0;
     let bitCoinCounter = 0;
 
-    for (let day = 0; day < input.length; day++) {
+    for (let i = 0; i < shift.length; i++) {
         dayCounter++;
-        let minedGold = Number(input[day]);
-
-        if (dayCounter % 3 === 0) {
-            minedGold *= 0.7; // Stealing 30% of mined gold on every third day
+        if (shift(i) % 3 === 0) {
+            totalGold *= 0.70;
         }
-
-        // totalGold += minedGold;
-        totalMoney += minedGold * goldPrice;
-
-        if (totalMoney >= bitcoinPrice && firstCoinDay === 0) {
-            firstCoinDay = dayCounter;
-        }
-        // totalBitcoin += oneBitcoin;
-        // console.log(`Bought bitcoins: ${totalBitcoin}`);
-
-        if (totalMoney >= bitcoinPrice) {
-            bitCoinCounter++;
-            totalBitcoin += bitCoinCounter;
-            totalMoney -= bitCoinCounter * bitcoinPrice;
+        totalGold += shift;
+        totalMoney = totalGold * goldPrice;
+        if ((totalGold * goldPrice) >= bitcoinPrice) {
+            totalBitcoin++;
+            if (totalBitcoin === 1 && dayCounter === 1) {
+                totalMoney -= totalBitcoin * bitcoinPrice;
+                console.log(`Day of the first purchased bitcoin: ${dayCounter}`);
+            }
         }
     }
     console.log(`Bought bitcoins: ${totalBitcoin}`);
 
-    if (firstCoinDay > 0) {
-        console.log(`Day of the first purchased bitcoin: ${firstCoinDay}`);
-    }
     console.log(`Left money: ${totalMoney.toFixed(2)} lv.`);
+
+
+
+    // for (let day = 0; day < input.length; day++) {
+    //     dayCounter++;
+    //     let minedGold = Number(input[day]);
+
+    //     if (dayCounter % 3 === 0) {
+    //         minedGold *= 0.7; // Stealing 30% of mined gold on every third day
+    //     }
+
+    //     // totalGold += minedGold;
+    //     totalMoney += minedGold * goldPrice;
+
+    //     if (totalMoney >= bitcoinPrice && firstCoinDay === 0) {
+    //         firstCoinDay = dayCounter;
+    //     }
+    //     // totalBitcoin += oneBitcoin;
+    //     // console.log(`Bought bitcoins: ${totalBitcoin}`);
+
+    //     if (totalMoney >= bitcoinPrice) {
+    //         bitCoinCounter++;
+    //         totalBitcoin += bitCoinCounter;
+    //         totalMoney -= bitCoinCounter * bitcoinPrice;
+    //     }
+    // }
+    // console.log(`Bought bitcoins: ${totalBitcoin}`);
+
+    // if (firstCoinDay > 0) {
+    //     console.log(`Day of the first purchased bitcoin: ${firstCoinDay}`);
+    // }
+    // console.log(`Left money: ${totalMoney.toFixed(2)} lv.`);
 
 }
 // bitcoinMining([100, 200, 300]);
 // bitcoinMining([50, 100]);
 bitcoinMining([3124.15, 504.212, 2511.124]);
-
 
