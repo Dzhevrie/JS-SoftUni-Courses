@@ -3,7 +3,12 @@
 // Remove trailing zeroes, if any (you can use parseFloat (number))
 // The output should be printed to the console. Do not print insignificant decimals.
 
-function rounding(params) {
-    
+function rounding(number, precision) {
+    if (precision > 15) {
+        precision = 15
+    }
+
+    let roundedNum = parseFloat(number.toFixed(precision));
+    console.log(roundedNum);
 }
-rounding();
+rounding(3.1415926535897932384626433832795, 5);

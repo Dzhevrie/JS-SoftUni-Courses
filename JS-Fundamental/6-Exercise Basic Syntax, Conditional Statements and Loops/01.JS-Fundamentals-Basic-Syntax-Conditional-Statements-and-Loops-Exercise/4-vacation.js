@@ -37,7 +37,7 @@ function vacation(group, type, day) {
         price = price * 0.85;
     } else if (type === "Business" && group >= 100) {
         price = price - discountPrice;
-    } else if (type === "Regular" && (group >= 10 && group <= 20)) {
+    } else if (type === "Regular" && group >= 10 && group <= 20) {
         price = price * 0.95;
     }
     console.log(`Total price: ${price.toFixed(2)}`);
