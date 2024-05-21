@@ -5,7 +5,7 @@
 function echoType(input) {
     let param = input;
     // input++;
-    if (typeof(param) === "string") {
+    if (typeof (param) === "string") {
         console.log(param);
     }
 
